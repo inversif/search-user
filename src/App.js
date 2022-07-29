@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import SearchBar from './components/SearchForm';
 import RenderTable from './components/Table';
 import Paginate from './components/Pagination';
+import Header from './components/Header';
 
 // import {searchKeyword, searchGender} from './helpers/search';
 
@@ -17,8 +18,6 @@ function App() {
   const[loading, setLoading] = useState(true);
   const[page, setPage] = useState(1);
   // const[errorMsg, setErrorMsg] = useState(null);
-  const [sortField, setSortField] = useState("");
-  const [order, setOrder] = useState("asc");
 
   const getSearchResult = (t) => {
     setTables(t);
@@ -27,29 +26,6 @@ function App() {
   const paginate = (pageNum) => { 
     setPage(pageNum); 
   }
-
-  // const handleSorting = (sortField, sortOrder, col) => {
-  //   if (sortField) {
-  //    const sorted = [...tables].sort((a, b) => {
-  //     console.log(sortField, sortOrder);
-  //     console.log(a['login']['username'])
-  //     // return (
-  //     //  a[sortField].toString().localeCompare(b[sortField].toString(), "en", {
-  //     //   numeric: true,
-  //     //  }) * (sortOrder === "asc" ? 1 : -1)
-  //     // );
-  //    });
-  //    setTables(sorted);
-  //   }
-  //  };
-
-  // const handleSortingChange = (accessor, col) => {
-  //   const sortOrder =
-  //     accessor === sortField && order === "asc" ? "desc" : "asc";
-  //   setSortField(accessor);
-  //   setOrder(sortOrder);
-  //   handleSorting(accessor, sortOrder, col);
-  //  };
 
   useEffect(() => {
     fetch(url)
@@ -62,6 +38,8 @@ function App() {
 
   return (
     <div className="container">
+        <Header title="Search User"></Header>
+        <hr></hr>
         <SearchBar modifyTable={getSearchResult} content={tables}></SearchBar>
         {loading 
           ? <span>Loading...</span> 

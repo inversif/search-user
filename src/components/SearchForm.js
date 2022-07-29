@@ -62,7 +62,7 @@ const SearchBar = (props) => {
             </div>
             <div className="col col-2 form-group">
                 <div>
-                  <label>Gender</label>
+                  <label></label>
                 </div>
                 <div>
                 <button onClick={resetFilter} type="submit" className="btn btn-primary">
